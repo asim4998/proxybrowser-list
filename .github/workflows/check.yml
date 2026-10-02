@@ -1,21 +1,22 @@
-yaml
-name: proxy-check
-on:
-  schedule:
-    - cron: "*/10 * * * *"
+name: proxy-check`):
+*```
+*name: proxy-check
+*on:
+*  schedule:
+*      - cron: "*/10 * * * *"
   workflow_dispatch:
-permissions:
-  contents: write
-jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+  permissions:
+    contents: write
+    jobs:
+      check:
+          runs-on: ubuntu-latest
+              steps:
+                    - uses: actions/checkout@v4
+                    -       - uses: actions/setup-python@v5
         with: {python-version: "3.11"}
-      - run: python3 checker.py
-      - run: |
+              - run: python3 checker.py
+              -       - run: |
           git config user.name "proxy-checker" && git config user.email "checker@proxybrowser.local"
-          git add proxies.json
-          git diff --cached --quiet || git commit -m "update proxies.json" && git push
-      - run: curl -s "https://purge.jsdelivr.net/gh/asim4998/proxybrowser-list@main/proxies.json" || true
+                    git add proxies.json
+                              git diff --cached --quiet || git commit -m "update proxies.json" && git push
+                                    - run: curl -s "https://purge.jsdelivr.net/gh/asim4998/proxybrowser-list@main/proxies.json" || true
